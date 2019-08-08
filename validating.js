@@ -22,9 +22,10 @@
 				else
 					$(this).parent().children(':last-child').html("");
 		});
+		var name;
 		function myName(name) {
-  			var patt1 = new RegExp("/^[a-z ,.'-]+$/i") ;
+  			var patt1 = /^[A-Za-z]+$/;
 
-  			
   			return patt1.test(String(name).toLowerCase());
-		}
+  		};
+		

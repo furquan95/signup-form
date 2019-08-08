@@ -197,6 +197,19 @@
 		});
 
 
+		$('#names').keyup(function() {
+		$("#names").each(function(){
+			if(myName($(this).val())==false){
+				$(this).parent().children(':last-child').html('Wrong Format of name!!').css("color","red");
+							}
+			else{
+				$(this).parent().children(':last-child').html('');
+				
+			}
+		});
+		});
+
+
 /*
 		$(":text").each(function (index){
 			if($(this).val()==''){
@@ -250,15 +263,14 @@
 
 		});
 		//formsub();
-    	$('#names').on('keyup'),function(){
-    		$('#names').each(function(){
-    			if(myName($(this).val())==true){
-    				$('#ae').html('Sorry, Invalid name').css("color", "red");
+    	/*$('#names').on('keyup'),function(){
+    		var patt1 = "/^[A-Za-z]+$/";
+    			if(($("#names").val().match(patt1)==false){
+    				$('#a1').html('Sorry, Invalid name').css("color", "red");
     			}
-    		});
     	}
 
-
+	*/
 
     	    $(document).ready(function(){
         // Countries
