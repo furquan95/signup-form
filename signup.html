@@ -20,35 +20,40 @@
 		
 		<form>
 			<div class="form-group">
-				<label for="name"><b>Name :<b> </label>
-				<input type="text" name="name" class="form-control textValidation" id="names">
-				<span id='a1'></span>
+				<label for="name"><b>First Name :<b> </label>
+				<input type="text" name="name" class="form-control" id="names">
+				<span id='a1'class="text-warning"></span>
+			</div>
+			<div class="form-group">
+				<label for="name"><b>Last Name :<b> </label>
+				<input type="text" name="name" class="form-control" id="names2">
+				<span id='a111'class="text-warning"></span>
 			</div>
 			<div class="form-group">
 				<label for="addr1"><b>Address Line 1 :<b> </label>
-				<input type="text" name="addr1" class="form-control textValidation" id="addr1">
-				<span id='a2'></span>
+				<input type="text" name="addr1" class="form-control textValidation1" id="addr1">
+				<span id='a2'class="text-warning"></span>
 			</div>
 			<div class="form-group">
 				<label for="addr2"><b>Address Line 2 :<b> </label>
-				<input type="text" name="addr2" class="form-control textValidation" id="addr2">
-				<span id='a3'></span>
+				<input type="text" name="addr2" class="form-control textValidation2" id="addr2">
+				<span id='a3'class="text-warning"></span>
 			</div>
 			<div class="form-group">
 				<label for="addr3"><b>Address Line 3 :<b> </label>
-				<input type="text" name="addr3" class="form-control textValidation" id="addr3">
-				<span id='a4'></span>
+				<input type="text" name="addr3" class="form-control textValidation3" id="addr3">
+				<span id='a4'class="text-warning"></span>
 			</div>
 			<div class="form-group">
 				<label for="pin"><b>PIN :<b> </label>
 				<input type="number" name="code" class="form-control pinValidation" id="pin">
-				<span id='a5'></span>
+				<span id='a5'class="text-warning"></span>
 			</div>
 			<div class="form-group">
 				<label for="phone"><b>Phone :<b> </label>
 				<input type="number" name="phone" class="form-control phoneValidation" id="phone">
 				<!--pattern="[7-9]{1}[0-9]{9}"-->
-				<span id='a6'></span>
+				<span id='a6'class="text-warning"></span>
 			</div>
 			<div class="form-group">
 				<label for="name"><b>Country :<b> </label>
@@ -56,36 +61,36 @@
 					
 
 			</select>
-			<span id='a7'></span>
+			<span id='a7'class="text-warning"></span>
 			</div>
 
 			<div class="form-group">
 				<label for="name"><b>Please select the State :<b> </label>
 				<select class="form-control" name="country" id="state"required>
 				</select>
-				<span id='ae'></span>
+				<span id='ae'class="text-warning"></span>
 			</div>
 
 			<div class="form-group">
 				<label for="username"><b>Username :<b> </label>
 				<input type="email" name="user" class="form-control emailValidation" id="userid">
-				<span id='a8'></span>
+				<span id='a8'class="text-warning"></span>
 			</div>
 			<div class="form-group">
 				<label for="password"><b>Password :<b> </label>
 				<input type="password" name="pass" class="form-control passwordValidation" id="pass">
-				<span id='a9'></span>
+				<span id='a9'class="text-warning"></span>
 			</div>
 			<div class="form-group">
 				<label for="confirmpass"><b>Confirm Password :<b> </label>
 				<input type="password" name="confirmpass" class="form-control passwordValidation" id="con_pass">
-				<span id='a10'></span>
+				<span id='a10'class="text-warning"></span>
 
 			</div>
 			<div class="form-group">
-				<input type="button" class="btn btn-primary" value="Submit" id="submitbtn">
+				<button type="submit" class="btn btn-primary" value="Submit" id="submitbtn">Submit</button>
 			</div>
-				<span id='message'></span>
+				<span id='message'class="text-success"></span>
 
 		</form>
 		
@@ -102,17 +107,51 @@
 		
 	
 
-  	$('#submitbtn').click(function() {
+  	//$('#submitbtn').click(function() {
   			//alert("Hurrayyyyyyy");
-  			//if(validateUserData()==true){
-  				formsub();
-  			//};
+  			
+  		
+  			
   		
   				//addDetails();
   			
 	  		
-  });
-  	
+  //});
+  /*
+  		$('.form-control').onclick('keyup', function() {
+    		if(allFilled()) {
+    			$('#submitbtn').removeAttr('disabled');
+    		}
+		});
+
+			function allFilled() {
+    		var filled = true;
+    		$('.form-control').each(function() {
+        		if($(this).val() == ''){
+        			filled = false;
+        		} 
+    		});
+    		return filled;
+		}
+		*/
+		function buttonState(){
+    		$("input").each(function(){
+        	$('#submitbtn').attr('disabled', 'disabled');
+        	if($(this).val() == "" ) return false;
+        	$('#submitbtn').attr('disabled', 'enabled');
+    	})
+		}
+
+		$(function(){
+    		$('#submitbtn').attr('disabled', 'disabled');
+    		$('input').change(buttonState);
+		})
+
+
+  		
+
+
+
   	
 	//function validateUserData(){ 
 
@@ -130,22 +169,48 @@
 
 
 
-		$('.textValidation').keyup(function() {
-		$(".textValidation").each(function(){
+		$('.textValidation1').keyup(function() {
+		//$(".textValidation1").each(function(){
 				if($(this).val()==''){
-					$(this).parent().children(':last-child').html('Fill this box first').css("color","red");
+					$(this).parent().children(':last-child').html('Fill this box first');
+					//return false;
 					
 				}
 				else{
 					$(this).parent().children(':last-child').html('');
 					}
-		});
+		//});
+	});
+		$('.textValidation2').keyup(function() {
+		//$(".textValidation1").each(function(){
+				if($(this).val()==''){
+					$(this).parent().children(':last-child').html('Fill this box first');
+					//return false;
+					
+				}
+				else{
+					$(this).parent().children(':last-child').html('');
+					}
+		//});
+	});
+		$('.textValidation3').keyup(function() {
+		//$(".textValidation1").each(function(){
+				if($(this).val()==''){
+					$(this).parent().children(':last-child').html('Fill this box first');
+					//return false;
+					
+				}
+				else{
+					$(this).parent().children(':last-child').html('');
+					}
+		//});
 	});
 
 		$('.pinValidation').keyup(function() {
 		$(".pinValidation").each(function(){
 			if($(this).val().length!=6 || $(this).val()==''){
-				$(this).parent().children(':last-child').html('wrong input').css("color","red");
+				$(this).parent().children(':last-child').html('wrong input');
+				//return false;
 				
 			}
 			else{
@@ -159,7 +224,8 @@
 		$(".phoneValidation").each(function(){
 			if(validatePhone($(this).val())==false|| $(this).val().length!=10){
 
-				$(this).parent().children(':last-child').html('wrong input').css("color","red");
+				$(this).parent().children(':last-child').html('wrong input');
+				//return false;
 				
 			}
 			
@@ -173,7 +239,8 @@
 		$('.emailValidation').keyup(function() {
 		$(".emailValidation").each(function(){
 			if(validateEmail($(this).val())==false){
-				$(this).parent().children(':last-child').html('wrong input').css("color","red");
+				$(this).parent().children(':last-child').html('wrong input');
+				//return false;
 							}
 			else{
 				$(this).parent().children(':last-child').html('');
@@ -186,7 +253,8 @@
 		$(".passwordValidation").each(function(){
 			//$(this).val();
 			if($(this).val().length <=5){
-				$(this).parent().children(':last-child').html('Enter atleast 6 digits').css("color","red");
+				$(this).parent().children(':last-child').html('Enter atleast 6 digits');
+				//return false;
 				
 			}
 			else{
@@ -200,13 +268,26 @@
 		$('#names').keyup(function() {
 		$("#names").each(function(){
 			if(myName($(this).val())==false){
-				$(this).parent().children(':last-child').html('Wrong Format of name!!').css("color","red");
+				$(this).parent().children(':last-child').html('Wrong Format of name!!');
+				//return false;
 							}
 			else{
 				$(this).parent().children(':last-child').html('');
 				
 			}
 		});
+		});
+		$('#names2').keyup(function() {
+		//$("#names2").each(function(){
+			if(myName($(this).val())==false){
+				$(this).parent().children(':last-child').html('Wrong Format of name!!');
+				//return false;
+							}
+			else{
+				$(this).parent().children(':last-child').html('');
+				
+			}
+		//});
 		});
 
 
@@ -251,7 +332,8 @@
 		$('#pass, #con_pass').on('keyup', function (){
 			if($('#pass').val() != $("#con_pass").val() || $("#pass").val()=='')
     		{
-	  		$('#a10').html('Password and conpassword donot match').css("color", "red");
+	  		$('#a10').html('Password and conpassword donot match');
+	  		
 	  		//return false;
 	  //throw "Error"
     		}
@@ -387,10 +469,6 @@
 
 
 
- 		function formsub(){
-    		$('#message').html("form submitted!").css("color", "green");
-			//$('#formsubmit').html("form submitted!");
-		}
 
 
 
